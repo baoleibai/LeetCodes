@@ -4,10 +4,12 @@ import java.util.HashMap;
 public class TwoSum {
 
 	private static boolean DEBUG = true;
+	private int[] result = new int[2];
 
 	public TwoSum() {
 		// TODO Auto-generated constructor stub
 	}
+
 	/**
 	 * 这个解法的优点是只使用了一次循环，缺点是如果nums的长度很大的话，会导致HashMap的size变大。 空间换时间
 	 * 
@@ -17,16 +19,43 @@ public class TwoSum {
 	 */
 	public int[] hashMapTwoSum(int[] nums, int target) {
 		HashMap<Integer, Integer> m = new HashMap<Integer, Integer>();
-		int[] res = new int[2];
+
 		for (int i = 0; i < nums.length; ++i) {
 			if (m.containsKey(target - nums[i])) {
-				res[0] = i;
-				res[1] = m.get(target - nums[i]);
+				result[1] = i;
+				result[0] = m.get(target - nums[i]);
 				break;
 			}
 			m.put(nums[i], i);
 		}
-		return res;
+		return result;
+	}
+
+	public int[] twoSumByArray(int[] numbers, int target) {
+		int n = numbers.length;
+		Pair[] pairs = new Pair[n];
+		for (int i = 0; i < n; ++i) {
+			pairs[i] = new Pair(numbers[i], i);
+		}
+		Arrays.sort(pairs);
+
+		int begin = 0;
+		int end = n - 1;
+		while (begin < end) {
+			System.out.println("x y " + (pairs[begin].number + pairs[end].number) + " " + begin + " " + end);
+			int temp = pairs[begin].number + pairs[end].number;
+			if ((temp) > target) {
+				end--;
+			} else if (temp < target) {
+				begin++;
+			} else {
+				result[0] = pairs[begin].idx;
+				result[1] = pairs[end].idx;
+				System.out.println("x y " + pairs[begin].idx + pairs[end].idx);
+				break;
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -65,6 +94,7 @@ public class TwoSum {
 				result[1] = pairs[end].idx;
 				break;
 			}
+
 		}
 		if (DEBUG) {
 			for (int i = 0; i < result.length; i++) {
@@ -90,7 +120,8 @@ public class TwoSum {
 
 	public static void main(String[] args) {
 		TwoSum twoSum = new TwoSum();
-		int[] arr = { 0, 4, 3, 0 };
-		twoSum.twoSum(arr, 0);
+		int[] arr = { 3, 2, 4 };
+		// twoSum.twoSum(arr, 0);
+		twoSum.twoSumByArray(arr, 6);
 	}
 }
