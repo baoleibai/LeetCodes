@@ -43,7 +43,9 @@ public class Solution {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		String styr = "~bc";
+		char[] chars = styr.toCharArray();
+		System.out.println("abc " + (int)chars[0]);
 	}
 
 }
