@@ -1,5 +1,9 @@
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Solution {
 
@@ -46,6 +50,24 @@ public class Solution {
 		String styr = "~bc";
 		char[] chars = styr.toCharArray();
 		System.out.println("abc " + (int)chars[0]);
-	}
+		LinkedHashSet<String> pst = new LinkedHashSet<>();
+		pst.add("b");
+		pst.add("a");
+		pst.add("c");
+		Iterator<String> iterator = pst.iterator();
+		while (iterator.hasNext()) {
+			System.out.println(iterator.next());
+			
+		}
+		HashMap<String, String> hashMap = new HashMap<>();
+		hashMap.put("b", "1");
+		hashMap.put("a", "1");
+		hashMap.put("c", "1");
+		Set<String> sets = hashMap.keySet();
+		Iterator<String> ss = sets.iterator();
+		while (ss.hasNext()) {
+			System.out.println(ss.next());
+		}
+	} 
 
 }
